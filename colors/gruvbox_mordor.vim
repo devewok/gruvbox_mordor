@@ -86,14 +86,14 @@ let s:is_dark=(&background == 'dark')
 let s:gb = {}
 
 " fill it with absolute colors
-let s:gb.dark0_hard  = ['#1d2021', 234]     " 29-32-33
-let s:gb.dark0       = ['#282828', 235]     " 40-40-40
-let s:gb.dark0_soft  = ['#32302f', 236]     " 50-48-47
-let s:gb.dark1       = ['#3c3836', 237]     " 60-56-54
-let s:gb.dark2       = ['#504945', 239]     " 80-73-69
-let s:gb.dark3       = ['#665c54', 241]     " 102-92-84
-let s:gb.dark4       = ['#7c6f64', 243]     " 124-111-100
-let s:gb.dark4_256   = ['#7c6f64', 243]     " 124-111-100
+let s:gb.dark0_hard  = ['#001219', 234]     " 29-32-33
+let s:gb.dark0       = ['#001219', 234]     " 40-40-40
+let s:gb.dark0_soft  = ['#021821', 235]     " 50-48-47
+let s:gb.dark1       = ['#062735', 237]     " 60-56-54
+let s:gb.dark2       = ['#0C3040', 239]     " 80-73-69
+let s:gb.dark3       = ['#04374D', 241]     " 102-92-84
+let s:gb.dark4       = ['#0B3F55', 243]     " 124-111-100
+let s:gb.dark4_256   = ['#11445A', 243]     " 124-111-100
 
 let s:gb.gray_245    = ['#928374', 245]     " 146-131-116
 let s:gb.gray_244    = ['#928374', 244]     " 146-131-116
@@ -107,12 +107,14 @@ let s:gb.light3      = ['#bdae93', 248]     " 189-174-147
 let s:gb.light4      = ['#a89984', 246]     " 168-153-132
 let s:gb.light4_256  = ['#a89984', 246]     " 168-153-132
 
-let s:gb.bright_red     = ['#fb4934', 167]     " 251-73-52
-let s:gb.bright_green   = ['#b8bb26', 142]     " 184-187-38
-let s:gb.bright_yellow  = ['#fabd2f', 214]     " 250-189-47
-let s:gb.bright_blue    = ['#83a598', 109]     " 131-165-152
-let s:gb.bright_purple  = ['#d3869b', 175]     " 211-134-155
-let s:gb.bright_aqua    = ['#8ec07c', 108]     " 142-192-124
+" let s:ha.bright_red     = ['#fb4934', 167]     " 251-73-52
+" let s:ha.bright_red    = ['#FF3838', 196]     " 204-36-29
+let s:gb.bright_red    = ['#f96e46', 196]     " 204-36-29
+let s:gb.bright_green   = ['#1BBC9B', 142]     " 184-187-38
+let s:gb.bright_yellow  = ['#FFDC00', 214]     " 250-189-47
+let s:gb.bright_gray    = ['#BFBFBF', 109]     " 131-165-152
+let s:gb.bright_orange_light  = ['#FA9600', 175]     " 211-134-155
+let s:gb.bright_aqua    = ['#607D8B', 108]     " 142-192-124
 let s:gb.bright_orange  = ['#fe8019', 208]     " 254-128-25
 
 let s:gb.neutral_red    = ['#cc241d', 124]     " 204-36-29
@@ -193,8 +195,8 @@ if s:is_dark
   let s:red    = s:gb.bright_red
   let s:green  = s:gb.bright_green
   let s:yellow = s:gb.bright_yellow
-  let s:blue   = s:gb.bright_blue
-  let s:purple = s:gb.bright_purple
+  let s:gray_light   = s:gb.bright_gray
+  let s:orange_light = s:gb.bright_orange_light
   let s:aqua   = s:gb.bright_aqua
   let s:orange = s:gb.bright_orange
 else
@@ -223,8 +225,8 @@ else
   let s:red    = s:gb.faded_red
   let s:green  = s:gb.faded_green
   let s:yellow = s:gb.faded_yellow
-  let s:blue   = s:gb.faded_blue
-  let s:purple = s:gb.faded_purple
+  let s:gray_light   = s:gb.faded_blue
+  let s:orange_light = s:gb.faded_purple
   let s:aqua   = s:gb.faded_aqua
   let s:orange = s:gb.faded_orange
 endif
@@ -237,8 +239,8 @@ if g:gruvbox_termcolors == 16
   let s:red[1]    = 9
   let s:green[1]  = 10
   let s:yellow[1] = 11
-  let s:blue[1]   = 12
-  let s:purple[1] = 13
+  let s:gray_light[1]   = 12
+  let s:orange_light[1] = 13
   let s:aqua[1]   = 14
   let s:fg1[1]    = 15
 endif
@@ -263,8 +265,8 @@ let s:gb.fg4_256 = s:fg4_256
 let s:gb.red    = s:red
 let s:gb.green  = s:green
 let s:gb.yellow = s:yellow
-let s:gb.blue   = s:blue
-let s:gb.purple = s:purple
+let s:gb.gray_light   = s:gray_light
+let s:gb.orange_light = s:orange_light
 let s:gb.aqua   = s:aqua
 let s:gb.orange = s:orange
 
@@ -285,10 +287,10 @@ if has('nvim')
   let g:terminal_color_11 = s:yellow[0]
 
   let g:terminal_color_4 = s:gb.neutral_blue[0]
-  let g:terminal_color_12 = s:blue[0]
+  let g:terminal_color_12 = s:gray_light[0]
 
   let g:terminal_color_5 = s:gb.neutral_purple[0]
-  let g:terminal_color_13 = s:purple[0]
+  let g:terminal_color_13 = s:orange_light[0]
 
   let g:terminal_color_6 = s:gb.neutral_aqua[0]
   let g:terminal_color_14 = s:aqua[0]
@@ -439,10 +441,10 @@ call s:HL('GruvboxGreen', s:green)
 call s:HL('GruvboxGreenBold', s:green, s:none, s:bold)
 call s:HL('GruvboxYellow', s:yellow)
 call s:HL('GruvboxYellowBold', s:yellow, s:none, s:bold)
-call s:HL('GruvboxBlue', s:blue)
-call s:HL('GruvboxBlueBold', s:blue, s:none, s:bold)
-call s:HL('GruvboxPurple', s:purple)
-call s:HL('GruvboxPurpleBold', s:purple, s:none, s:bold)
+call s:HL('GruvboxGrayLight', s:gray_light)
+call s:HL('GruvboxGrayLightBold', s:gray_light, s:none, s:bold)
+call s:HL('GruvboxOrangeLight', s:orange_light)
+call s:HL('GruvboxOrangeLightBold', s:orange_light, s:none, s:bold)
 call s:HL('GruvboxAqua', s:aqua)
 call s:HL('GruvboxAquaBold', s:aqua, s:none, s:bold)
 call s:HL('GruvboxOrange', s:orange)
@@ -451,8 +453,8 @@ call s:HL('GruvboxOrangeBold', s:orange, s:none, s:bold)
 call s:HL('GruvboxRedSign', s:red, s:sign_column, s:invert_signs)
 call s:HL('GruvboxGreenSign', s:green, s:sign_column, s:invert_signs)
 call s:HL('GruvboxYellowSign', s:yellow, s:sign_column, s:invert_signs)
-call s:HL('GruvboxBlueSign', s:blue, s:sign_column, s:invert_signs)
-call s:HL('GruvboxPurpleSign', s:purple, s:sign_column, s:invert_signs)
+call s:HL('GruvboxGrayLightSign', s:gray_light, s:sign_column, s:invert_signs)
+call s:HL('GruvboxOrangeLightSign', s:orange_light, s:sign_column, s:invert_signs)
 call s:HL('GruvboxAquaSign', s:aqua, s:sign_column, s:invert_signs)
 call s:HL('GruvboxOrangeSign', s:orange, s:sign_column, s:invert_signs)
 
@@ -495,7 +497,7 @@ if version >= 703
   call s:HL('ColorColumn',  s:none, s:color_column)
 
   " Concealed element: \lambda → λ
-  call s:HL('Conceal', s:blue, s:none)
+  call s:HL('Conceal', s:gray_light, s:none)
 
   " Line number of CursorLine
   call s:HL('CursorLineNr', s:yellow, s:bg1)
@@ -510,7 +512,7 @@ hi! link VisualNOS Visual
 call s:HL('Search',    s:yellow, s:bg0, s:inverse)
 call s:HL('IncSearch', s:hls_cursor, s:bg0, s:inverse)
 
-call s:HL('Underlined', s:blue, s:none, s:underline)
+call s:HL('Underlined', s:gray_light, s:none, s:underline)
 
 call s:HL('StatusLine',   s:bg2, s:fg1, s:inverse)
 call s:HL('StatusLineNC', s:bg1, s:fg4, s:inverse)
@@ -519,7 +521,7 @@ call s:HL('StatusLineNC', s:bg1, s:fg4, s:inverse)
 call s:HL('VertSplit', s:bg3, s:vert_split)
 
 " Current match in wildmenu completion
-call s:HL('WildMenu', s:blue, s:bg2, s:bold)
+call s:HL('WildMenu', s:gray_light, s:bg2, s:bold)
 
 " Directory names, special names in listing
 hi! link Directory GruvboxGreenBold
@@ -593,7 +595,7 @@ hi! link Operator Normal
 hi! link Keyword GruvboxRed
 
 " Variable name
-hi! link Identifier GruvboxBlue
+hi! link Identifier GruvboxGrayLight
 " Function name
 hi! link Function GruvboxGreenBold
 
@@ -609,9 +611,9 @@ hi! link Macro GruvboxAqua
 hi! link PreCondit GruvboxAqua
 
 " Generic constant
-hi! link Constant GruvboxPurple
+hi! link Constant GruvboxOrangeLight
 " Character constant: 'c', '/n'
-hi! link Character GruvboxPurple
+hi! link Character GruvboxOrangeLight
 " String constant: "this is a string"
 if g:gruvbox_improved_strings == 0
   call s:HL('String',  s:green, s:none, s:italicize_strings)
@@ -619,11 +621,11 @@ else
   call s:HL('String',  s:fg1, s:bg1, s:italicize_strings)
 endif
 " Boolean constant: TRUE, false
-hi! link Boolean GruvboxPurple
+hi! link Boolean GruvboxOrangeLight
 " Number constant: 234, 0xff
-hi! link Number GruvboxPurple
+hi! link Number GruvboxOrangeLight
 " Floating point constant: 2.3e10
-hi! link Float GruvboxPurple
+hi! link Float GruvboxOrangeLight
 
 " Generic type
 hi! link Type GruvboxYellow
@@ -641,7 +643,7 @@ if version >= 700
   " Popup menu: normal item
   call s:HL('Pmenu', s:fg1, s:bg2)
   " Popup menu: selected item
-  call s:HL('PmenuSel', s:bg2, s:blue, s:bold)
+  call s:HL('PmenuSel', s:bg2, s:gray_light, s:bold)
   " Popup menu: scrollbar
   call s:HL('PmenuSbar', s:none, s:bg2)
   " Popup menu: scrollbar thumb
@@ -653,7 +655,7 @@ endif
 
 call s:HL('DiffDelete', s:red, s:bg0, s:inverse)
 call s:HL('DiffAdd',    s:green, s:bg0, s:inverse)
-"call s:HL('DiffChange', s:bg0, s:blue)
+"call s:HL('DiffChange', s:bg0, s:gray_light)
 "call s:HL('DiffText',   s:bg0, s:yellow)
 
 " Alternative setting
@@ -671,11 +673,11 @@ if has("spell")
     call s:HL('SpellCap',   s:green, s:none, s:bold . s:italic)
   endif
   " Not recognized word
-  call s:HL('SpellBad',   s:none, s:none, s:undercurl, s:blue)
+  call s:HL('SpellBad',   s:none, s:none, s:undercurl, s:gray_light)
   " Wrong spelling for selected region
   call s:HL('SpellLocal', s:none, s:none, s:undercurl, s:aqua)
   " Rare word
-  call s:HL('SpellRare',  s:none, s:none, s:undercurl, s:purple)
+  call s:HL('SpellRare',  s:none, s:none, s:undercurl, s:orange_light)
 endif
 
 " }}}
@@ -725,13 +727,13 @@ endif
 if !exists('g:rbpt_colorpairs')
   let g:rbpt_colorpairs =
     \ [
-      \ ['blue', '#458588'], ['magenta', '#b16286'],
+      \ ['gray_light', '#BFBFBF'], ['magenta', '#b16286'],
       \ ['red',  '#cc241d'], ['166',     '#d65d0e']
     \ ]
 endif
 
 let g:rainbow_guifgs = [ '#d65d0e', '#cc241d', '#b16286', '#458588' ]
-let g:rainbow_ctermfgs = [ '166', 'red', 'magenta', 'blue' ]
+let g:rainbow_ctermfgs = [ '166', 'red', 'magenta', 'gray_light' ]
 
 if !exists('g:rainbow_conf')
    let g:rainbow_conf = {}
@@ -778,16 +780,16 @@ hi! link SyntasticWarningSign GruvboxYellowSign
 
 " }}}
 " Signature: {{{
-hi! link SignatureMarkText   GruvboxBlueSign
-hi! link SignatureMarkerText GruvboxPurpleSign
+hi! link SignatureMarkText   GruvboxGrayLightSign
+hi! link SignatureMarkerText GruvboxOrangeLightSign
 
 " }}}
 " ShowMarks: {{{
 
-hi! link ShowMarksHLl GruvboxBlueSign
-hi! link ShowMarksHLu GruvboxBlueSign
-hi! link ShowMarksHLo GruvboxBlueSign
-hi! link ShowMarksHLm GruvboxBlueSign
+hi! link ShowMarksHLl GruvboxGrayLightSign
+hi! link ShowMarksHLu GruvboxGrayLightSign
+hi! link ShowMarksHLo GruvboxGrayLightSign
+hi! link ShowMarksHLm GruvboxGrayLightSign
 
 " }}}
 " CtrlP: {{{
@@ -795,11 +797,11 @@ hi! link ShowMarksHLm GruvboxBlueSign
 hi! link CtrlPMatch GruvboxYellow
 hi! link CtrlPNoEntries GruvboxRed
 hi! link CtrlPPrtBase GruvboxBg2
-hi! link CtrlPPrtCursor GruvboxBlue
+hi! link CtrlPPrtCursor GruvboxGrayLight
 hi! link CtrlPLinePre GruvboxBg2
 
-call s:HL('CtrlPMode1', s:blue, s:bg2, s:bold)
-call s:HL('CtrlPMode2', s:bg0, s:blue, s:bold)
+call s:HL('CtrlPMode1', s:gray_light, s:bg2, s:bold)
+call s:HL('CtrlPMode2', s:bg0, s:gray_light, s:bold)
 call s:HL('CtrlPStats', s:fg4, s:bg2, s:bold)
 
 " }}}
@@ -807,7 +809,7 @@ call s:HL('CtrlPStats', s:fg4, s:bg2, s:bold)
 
 hi! link StartifyBracket GruvboxFg3
 hi! link StartifyFile GruvboxFg1
-hi! link StartifyNumber GruvboxBlue
+hi! link StartifyNumber GruvboxGrayLight
 hi! link StartifyPath GruvboxGray
 hi! link StartifySlash GruvboxGray
 hi! link StartifySection GruvboxYellow
@@ -820,9 +822,9 @@ hi! link StartifyFooter GruvboxBg2
 
 let g:vimshell_escape_colors = [
   \ s:bg4[0], s:red[0], s:green[0], s:yellow[0],
-  \ s:blue[0], s:purple[0], s:aqua[0], s:fg4[0],
+  \ s:gray_light[0], s:orange_light[0], s:aqua[0], s:fg4[0],
   \ s:bg0[0], s:red[0], s:green[0], s:orange[0],
-  \ s:blue[0], s:purple[0], s:aqua[0], s:fg0[0]
+  \ s:gray_light[0], s:orange_light[0], s:aqua[0], s:fg0[0]
   \ ]
 
 " }}}
@@ -838,11 +840,11 @@ call s:HL('BufTabLineFill', s:bg0, s:bg0)
 
 call s:HL('ALEError', s:none, s:none, s:undercurl, s:red)
 call s:HL('ALEWarning', s:none, s:none, s:undercurl, s:yellow)
-call s:HL('ALEInfo', s:none, s:none, s:undercurl, s:blue)
+call s:HL('ALEInfo', s:none, s:none, s:undercurl, s:gray_light)
 
 hi! link ALEErrorSign GruvboxRedSign
 hi! link ALEWarningSign GruvboxYellowSign
-hi! link ALEInfoSign GruvboxBlueSign
+hi! link ALEInfoSign GruvboxGrayLightSign
 
 " }}}
 " Dirvish: {{{
@@ -859,7 +861,7 @@ hi! link netrwLink GruvboxGray
 hi! link netrwSymLink GruvboxFg1
 hi! link netrwExe GruvboxYellow
 hi! link netrwComment GruvboxGray
-hi! link netrwList GruvboxBlue
+hi! link netrwList GruvboxGrayLight
 hi! link netrwHelpCmd GruvboxAqua
 hi! link netrwCmdSep GruvboxFg3
 hi! link netrwVersion GruvboxGreen
@@ -895,15 +897,15 @@ call s:HL('multiple_cursors_visual', s:none, s:bg2)
 hi! link CocErrorSign GruvboxRedSign
 hi! link CocWarningSign GruvboxOrangeSign
 hi! link CocInfoSign GruvboxYellowSign
-hi! link CocHintSign GruvboxBlueSign
+hi! link CocHintSign GruvboxGrayLightSign
 hi! link CocErrorFloat GruvboxRed
 hi! link CocWarningFloat GruvboxOrange
 hi! link CocInfoFloat GruvboxYellow
-hi! link CocHintFloat GruvboxBlue
+hi! link CocHintFloat GruvboxGrayLight
 hi! link CocDiagnosticsError GruvboxRed
 hi! link CocDiagnosticsWarning GruvboxOrange
 hi! link CocDiagnosticsInfo GruvboxYellow
-hi! link CocDiagnosticsHint GruvboxBlue
+hi! link CocDiagnosticsHint GruvboxGrayLight
 
 hi! link CocSelectedText GruvboxRed
 hi! link CocCodeLens GruvboxGray
@@ -911,7 +913,7 @@ hi! link CocCodeLens GruvboxGray
 call s:HL('CocErrorHighlight', s:none, s:none, s:undercurl, s:red)
 call s:HL('CocWarningHighlight', s:none, s:none, s:undercurl, s:orange)
 call s:HL('CocInfoHighlight', s:none, s:none, s:undercurl, s:yellow)
-call s:HL('CocHintHighlight', s:none, s:none, s:undercurl, s:blue)
+call s:HL('CocHintHighlight', s:none, s:none, s:undercurl, s:gray_light)
 
 " }}}
 
@@ -925,18 +927,18 @@ hi! link diffChanged GruvboxAqua
 hi! link diffFile GruvboxOrange
 hi! link diffNewFile GruvboxYellow
 
-hi! link diffLine GruvboxBlue
+hi! link diffLine GruvboxGrayLight
 
 " }}}
 " Html: {{{
 
-hi! link htmlTag GruvboxBlue
-hi! link htmlEndTag GruvboxBlue
+hi! link htmlTag GruvboxGrayLight
+hi! link htmlEndTag GruvboxGrayLight
 
 hi! link htmlTagName GruvboxAquaBold
 hi! link htmlArg GruvboxAqua
 
-hi! link htmlScriptTag GruvboxPurple
+hi! link htmlScriptTag GruvboxOrangeLight
 hi! link htmlTagN GruvboxFg1
 hi! link htmlSpecialTagName GruvboxAquaBold
 
@@ -956,18 +958,18 @@ call s:HL('htmlItalic', s:vim_fg, s:vim_bg, s:italic)
 " }}}
 " Xml: {{{
 
-hi! link xmlTag GruvboxBlue
-hi! link xmlEndTag GruvboxBlue
-hi! link xmlTagName GruvboxBlue
-hi! link xmlEqual GruvboxBlue
+hi! link xmlTag GruvboxGrayLight
+hi! link xmlEndTag GruvboxGrayLight
+hi! link xmlTagName GruvboxGrayLight
+hi! link xmlEqual GruvboxGrayLight
 hi! link docbkKeyword GruvboxAquaBold
 
 hi! link xmlDocTypeDecl GruvboxGray
-hi! link xmlDocTypeKeyword GruvboxPurple
+hi! link xmlDocTypeKeyword GruvboxOrangeLight
 hi! link xmlCdataStart GruvboxGray
-hi! link xmlCdataCdata GruvboxPurple
+hi! link xmlCdataCdata GruvboxOrangeLight
 hi! link dtdFunction GruvboxGray
-hi! link dtdTagName GruvboxPurple
+hi! link dtdTagName GruvboxOrangeLight
 
 hi! link xmlAttrib GruvboxAqua
 hi! link xmlProcessingDelim GruvboxGray
@@ -993,7 +995,7 @@ hi! link vimContinue GruvboxFg3
 " }}}
 " Clojure: {{{
 
-hi! link clojureKeyword GruvboxBlue
+hi! link clojureKeyword GruvboxGrayLight
 hi! link clojureCond GruvboxOrange
 hi! link clojureSpecial GruvboxOrange
 hi! link clojureDefine GruvboxOrange
@@ -1012,7 +1014,7 @@ hi! link clojureRegexpQuantifier clojureRegexpCharClass
 
 hi! link clojureParen GruvboxFg3
 hi! link clojureAnonArg GruvboxYellow
-hi! link clojureVariable GruvboxBlue
+hi! link clojureVariable GruvboxGrayLight
 hi! link clojureMacro GruvboxOrange
 
 hi! link clojureMeta GruvboxYellow
@@ -1023,7 +1025,7 @@ hi! link clojureUnquote GruvboxYellow
 " }}}
 " C: {{{
 
-hi! link cOperator GruvboxPurple
+hi! link cOperator GruvboxOrangeLight
 hi! link cStructure GruvboxOrange
 
 " }}}
@@ -1034,14 +1036,14 @@ hi! link pythonBuiltinObj GruvboxOrange
 hi! link pythonBuiltinFunc GruvboxOrange
 hi! link pythonFunction GruvboxAqua
 hi! link pythonDecorator GruvboxRed
-hi! link pythonInclude GruvboxBlue
-hi! link pythonImport GruvboxBlue
-hi! link pythonRun GruvboxBlue
-hi! link pythonCoding GruvboxBlue
+hi! link pythonInclude GruvboxGrayLight
+hi! link pythonImport GruvboxGrayLight
+hi! link pythonRun GruvboxGrayLight
+hi! link pythonCoding GruvboxGrayLight
 hi! link pythonOperator GruvboxRed
 hi! link pythonException GruvboxRed
-hi! link pythonExceptions GruvboxPurple
-hi! link pythonBoolean GruvboxPurple
+hi! link pythonExceptions GruvboxOrangeLight
+hi! link pythonBoolean GruvboxOrangeLight
 hi! link pythonDot GruvboxFg3
 hi! link pythonConditional GruvboxRed
 hi! link pythonRepeat GruvboxRed
@@ -1050,13 +1052,13 @@ hi! link pythonDottedName GruvboxGreenBold
 " }}}
 " CSS: {{{
 
-hi! link cssBraces GruvboxBlue
+hi! link cssBraces GruvboxGrayLight
 hi! link cssFunctionName GruvboxYellow
 hi! link cssIdentifier GruvboxOrange
 hi! link cssClassName GruvboxGreen
-hi! link cssColor GruvboxBlue
-hi! link cssSelectorOp GruvboxBlue
-hi! link cssSelectorOp2 GruvboxBlue
+hi! link cssColor GruvboxGrayLight
+hi! link cssSelectorOp GruvboxGrayLight
+hi! link cssSelectorOp2 GruvboxGrayLight
 hi! link cssImportant GruvboxGreen
 hi! link cssVendor GruvboxFg1
 
@@ -1088,9 +1090,9 @@ hi! link cssGeneratedContentProp GruvboxAqua
 hi! link javaScriptBraces GruvboxFg1
 hi! link javaScriptFunction GruvboxAqua
 hi! link javaScriptIdentifier GruvboxRed
-hi! link javaScriptMember GruvboxBlue
-hi! link javaScriptNumber GruvboxPurple
-hi! link javaScriptNull GruvboxPurple
+hi! link javaScriptMember GruvboxGrayLight
+hi! link javaScriptNumber GruvboxOrangeLight
+hi! link javaScriptNull GruvboxOrangeLight
 hi! link javaScriptParens GruvboxFg3
 
 " }}}
@@ -1148,9 +1150,9 @@ hi! link javascriptMessage GruvboxRed
 hi! link javascriptTemplateSB GruvboxAqua
 hi! link javascriptTemplateSubstitution GruvboxFg1
 
-" hi! link javascriptLabel GruvboxBlue
-" hi! link javascriptObjectLabel GruvboxBlue
-" hi! link javascriptPropertyName GruvboxBlue
+" hi! link javascriptLabel GruvboxGrayLight
+" hi! link javascriptObjectLabel GruvboxGrayLight
+" hi! link javascriptPropertyName GruvboxGrayLight
 hi! link javascriptLabel GruvboxFg1
 hi! link javascriptObjectLabel GruvboxFg1
 hi! link javascriptPropertyName GruvboxFg1
@@ -1186,8 +1188,8 @@ hi! link jsGlobalObjects GruvboxFg1
 hi! link jsFunction GruvboxAqua
 hi! link jsFuncParens GruvboxFg3
 hi! link jsParens GruvboxFg3
-hi! link jsNull GruvboxPurple
-hi! link jsUndefined GruvboxPurple
+hi! link jsNull GruvboxOrangeLight
+hi! link jsUndefined GruvboxOrangeLight
 hi! link jsClassDefinition GruvboxYellow
 
 " }}}
@@ -1209,7 +1211,7 @@ hi! link typeScriptGlobalObjects GruvboxFg1
 hi! link typeScriptParens GruvboxFg3
 hi! link typeScriptOpSymbols GruvboxFg3
 hi! link typeScriptHtmlElemProperties GruvboxFg1
-hi! link typeScriptNull GruvboxPurple
+hi! link typeScriptNull GruvboxOrangeLight
 hi! link typeScriptInterpolationDelimiter GruvboxAqua
 
 " }}}
@@ -1224,7 +1226,7 @@ hi! link purescriptImportKeyword GruvboxAqua
 hi! link purescriptHidingKeyword GruvboxAqua
 hi! link purescriptAsKeyword GruvboxAqua
 hi! link purescriptStructure GruvboxAqua
-hi! link purescriptOperator GruvboxBlue
+hi! link purescriptOperator GruvboxGrayLight
 
 hi! link purescriptTypeVar GruvboxFg1
 hi! link purescriptConstructor GruvboxFg1
@@ -1251,15 +1253,15 @@ hi! link rubyInterpolationDelimiter GruvboxAqua
 " ObjectiveC: {{{
 
 hi! link objcTypeModifier GruvboxRed
-hi! link objcDirective GruvboxBlue
+hi! link objcDirective GruvboxGrayLight
 
 " }}}
 " Go: {{{
 
 hi! link goDirective GruvboxAqua
-hi! link goConstants GruvboxPurple
+hi! link goConstants GruvboxOrangeLight
 hi! link goDeclaration GruvboxRed
-hi! link goDeclType GruvboxBlue
+hi! link goDeclType GruvboxGrayLight
 hi! link goBuiltins GruvboxOrange
 
 " }}}
@@ -1280,7 +1282,7 @@ hi! link moonObject GruvboxYellow
 " }}}
 " Java: {{{
 
-hi! link javaAnnotation GruvboxBlue
+hi! link javaAnnotation GruvboxGrayLight
 hi! link javaDocTags GruvboxAqua
 hi! link javaCommentTitle vimCommentTitle
 hi! link javaParen GruvboxFg3
@@ -1351,7 +1353,7 @@ hi! link markdownLinkDelimiter GruvboxFg3
 hi! link markdownLinkTextDelimiter GruvboxFg3
 
 hi! link markdownHeadingDelimiter GruvboxOrange
-hi! link markdownUrl GruvboxPurple
+hi! link markdownUrl GruvboxOrangeLight
 hi! link markdownUrlTitleDelimiter GruvboxGreen
 
 call s:HL('markdownLinkText', s:gray, s:none, s:underline)
@@ -1369,7 +1371,7 @@ hi! link haskellType GruvboxFg1
 hi! link haskellIdentifier GruvboxFg1
 hi! link haskellSeparator GruvboxFg1
 hi! link haskellDelimiter GruvboxFg4
-hi! link haskellOperators GruvboxBlue
+hi! link haskellOperators GruvboxGrayLight
 "
 hi! link haskellBacktick GruvboxOrange
 hi! link haskellStatement GruvboxOrange
@@ -1385,8 +1387,8 @@ hi! link haskellDeclKeyword GruvboxAqua
 hi! link haskellDeriving GruvboxAqua
 hi! link haskellAssocType GruvboxAqua
 
-hi! link haskellNumber GruvboxPurple
-hi! link haskellPragma GruvboxPurple
+hi! link haskellNumber GruvboxOrangeLight
+hi! link haskellPragma GruvboxOrangeLight
 
 hi! link haskellString GruvboxGreen
 hi! link haskellChar GruvboxGreen
