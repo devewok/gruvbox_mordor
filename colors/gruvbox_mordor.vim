@@ -17,7 +17,7 @@ if version > 580
   endif
 endif
 
-let g:colors_name='gruvbox'
+let g:colors_name='gruvbox_mordor'
 
 if !(has('termguicolors') && &termguicolors) && !has('gui_running') && &t_Co != 256
   finish
@@ -96,6 +96,7 @@ let s:gb.dark3       = ['#04374D', 241]     " 102-92-84
 let s:gb.dark4       = ['#0B3F55', 243]     " 124-111-100
 let s:gb.dark4_256   = ['#11445A', 243]     " 124-111-100
 let s:gb.dark5       = ['#0b090a', 243]     " 124-111-100
+let s:gb.darkf       = ['#293241', 234]     " 29-32-33
 
 let s:gb.gray_245    = ['#928374', 245]     " 146-131-116
 let s:gb.gray_244    = ['#928374', 244]     " 146-131-116
@@ -184,6 +185,7 @@ if s:is_dark
   let s:bg3  = s:gb.dark3
   let s:bg4  = s:gb.dark4
   let s:bg5  = s:gb.dark5
+  let s:bgf  = s:gb.darkf
 
   let s:gray = s:gb.gray_245
 
@@ -255,6 +257,7 @@ let s:gb.bg2 = s:bg2
 let s:gb.bg3 = s:bg3
 let s:gb.bg4 = s:bg4
 let s:gb.bg5 = s:bg5
+let s:gb.bgf = s:bgf
 
 let s:gb.gray = s:gray
 
@@ -469,7 +472,7 @@ call s:HL('GruvboxOrangeSign', s:orange, s:sign_column, s:invert_signs)
 " General UI: {{{
 
 " Normal text
-call s:HL('Normal', s:fg1, s:bg0)
+call s:HL('Normal', s:gray_light, s:bg0)
 
 " Correct background (see issue #7):
 " --- Problem with changing between dark and light on 256 color terminal
@@ -499,13 +502,13 @@ endif
 
 if version >= 703
   " Highlighted screen columns
-  call s:HL('ColorColumn',  s:none, s:color_column)
+  call s:HL('ColorColumn',  s:none, s:bg1)
 
   " Concealed element: \lambda → λ
   call s:HL('Conceal', s:gray_light, s:none)
 
   " Line number of CursorLine
-  call s:HL('CursorLineNr', s:yellow, s:bg1)
+  call s:HL('CursorLineNr', s:yellow, s:bg0)
 endif
 
 hi! link NonText GruvboxBg2
@@ -549,13 +552,13 @@ hi! link WarningMsg GruvboxRedBold
 " Gutter: {{{
 
 " Line number for :number and :# commands
-call s:HL('LineNr', s:bg4, s:number_column)
+call s:HL('LineNr', s:bg4, s:bg0)
 
 " Column where signs are displayed
-call s:HL('SignColumn', s:none, s:bg0)
+call s:HL('SignColumn', s:bg0, s:none)
 
 " Line used for closed folds
-call s:HL('Folded', s:gray, s:bg1, s:italic)
+call s:HL('Folded', s:gray_light, s:bgf, s:italic)
 " Column where folds are displayed
 call s:HL('FoldColumn', s:gray, s:bg0)
 
@@ -602,7 +605,7 @@ hi! link Keyword GruvboxRed
 " Variable name
 hi! link Identifier GruvboxGrayLight
 " Function name
-hi! link Function GruvboxGreenBold
+hi! link Function GruvboxAqua
 
 " Generic preprocessor
 hi! link PreProc GruvboxAqua
@@ -643,18 +646,16 @@ hi! link Typedef GruvboxYellow
 
 " }}}
 " Completion Menu: {{{
-
 if version >= 700
   " Popup menu: normal item
-  call s:HL('Pmenu', s:fg1, s:bg2)
+  call s:HL('Pmenu', s:fg1, s:bg5)
   " Popup menu: selected item
-  call s:HL('PmenuSel', s:bg2, s:gray_light, s:bold)
+  call s:HL('PmenuSel', s:bg1, s:gray_light, s:bold)
   " Popup menu: scrollbar
   call s:HL('PmenuSbar', s:none, s:bg2)
   " Popup menu: scrollbar thumb
   call s:HL('PmenuThumb', s:none, s:bg4)
 endif
-
 " }}}
 " Diffs: {{{
 
@@ -686,7 +687,6 @@ if has("spell")
 endif
 
 " }}}
-
 " Plugin specific -------------------------------------------------------------
 " EasyMotion: {{{
 
@@ -875,7 +875,7 @@ hi! link netrwVersion GruvboxGreen
 " NERDTree: {{{
 
 hi! link NERDTreeDir GruvboxAqua
-hi! link NERDTreeDirSlash GruvboxAqua
+hi! link NERDTreeDirSlash GruvboxRed
 
 hi! link NERDTreeOpenable GruvboxOrange
 hi! link NERDTreeClosable GruvboxOrange
@@ -1039,20 +1039,25 @@ hi! link cStructure GruvboxOrange
 hi! link pythonBuiltin GruvboxOrange
 hi! link pythonBuiltinObj GruvboxOrange
 hi! link pythonBuiltinFunc GruvboxOrange
-hi! link pythonFunction GruvboxAqua
+hi! link pythonFunction GruvboxOrangeLight
 hi! link pythonDecorator GruvboxRed
 hi! link pythonInclude GruvboxGrayLight
-hi! link pythonImport GruvboxGrayLight
+hi! link pythonClass GruvboxYellow
+hi! link pythonClassVar GruvboxYellow
+hi! link pythonStatement GruvboxRed
+hi! link pythonImport GruvboxRed
 hi! link pythonRun GruvboxGrayLight
 hi! link pythonCoding GruvboxGrayLight
 hi! link pythonOperator GruvboxRed
 hi! link pythonException GruvboxRed
 hi! link pythonExceptions GruvboxOrangeLight
-hi! link pythonBoolean GruvboxOrangeLight
+hi! link pythonBoolean GruvboxFg1
+hi! link pythonComment GruvboxFg4
+hi! link pythonString GruvboxGreenBold
 hi! link pythonDot GruvboxFg3
 hi! link pythonConditional GruvboxRed
 hi! link pythonRepeat GruvboxRed
-hi! link pythonDottedName GruvboxGreenBold
+hi! link pythonDottedName GruvboxAquaBold
 
 " }}}
 " CSS: {{{
@@ -1093,7 +1098,7 @@ hi! link cssGeneratedContentProp GruvboxAqua
 " JavaScript: {{{
 
 hi! link javaScriptBraces GruvboxFg1
-hi! link javaScriptFunction GruvboxAqua
+hi! link javaScriptFunction GruvboxOrangeLight
 hi! link javaScriptIdentifier GruvboxRed
 hi! link javaScriptMember GruvboxGrayLight
 hi! link javaScriptNumber GruvboxOrangeLight
@@ -1103,11 +1108,12 @@ hi! link javaScriptParens GruvboxFg3
 " }}}
 " YAJS: {{{
 
-hi! link javascriptImport GruvboxAqua
-hi! link javascriptExport GruvboxAqua
+hi! link javascriptImport GruvboxRed
+hi! link javascriptFrom GruvboxRed
+hi! link javascriptExport GruvboxRed
 hi! link javascriptClassKeyword GruvboxAqua
 hi! link javascriptClassExtends GruvboxAqua
-hi! link javascriptDefault GruvboxAqua
+hi! link javascriptDefault GruvboxRed
 
 hi! link javascriptClassName GruvboxYellow
 hi! link javascriptClassSuperName GruvboxYellow
@@ -1186,16 +1192,32 @@ hi! link javascriptAwaitFuncKeyword GruvboxRed
 
 hi! link jsClassKeyword GruvboxAqua
 hi! link jsExtendsKeyword GruvboxAqua
-hi! link jsExportDefault GruvboxAqua
+hi! link jsExtendsKeyword GruvboxAqua
+hi! link jsExportDefault GruvboxRed
+hi! link jsExport GruvboxRed
+hi! link jsImport GruvboxRed
+hi! link jsFrom GruvboxRed
 hi! link jsTemplateBraces GruvboxAqua
 hi! link jsGlobalNodeObjects GruvboxFg1
-hi! link jsGlobalObjects GruvboxFg1
-hi! link jsFunction GruvboxAqua
+hi! link jsGlobalObjects GruvboxRed
+hi! link jsObjectKey GruvboxFg0
+hi! link jsObject GruvboxFg2
+hi! link jsBlock GruvboxFg2
+hi! link jsBrackets GruvboxFg5
+hi! link jsOperator GruvboxOrange
+hi! link jsFunction GruvboxOrangeLight
+hi! link jsString GruvboxAqua
+hi! link jsComponent GruvboxFg2
+hi! link jsFuncCall GruvboxOrange
+hi! link jsArrowFunction GruvboxYellow
 hi! link jsFuncParens GruvboxFg3
+hi! link jsFuncArgs GruvboxYellow
+hi! link jsFuncArgExpression GruvboxYellow
 hi! link jsParens GruvboxFg3
-hi! link jsNull GruvboxOrangeLight
-hi! link jsUndefined GruvboxOrangeLight
+hi! link jsNull GruvboxGrayLight
+hi! link jsUndefined GruvboxGrayLight
 hi! link jsClassDefinition GruvboxYellow
+hi! link jsFuncName GruvboxYellowBold
 
 " }}}
 " TypeScript: {{{
