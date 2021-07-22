@@ -1,3 +1,4 @@
+" Original
 " -----------------------------------------------------------------------------
 " File: gruvbox.vim
 " Description: Retro groove color scheme for Vim
@@ -5,7 +6,7 @@
 " Source: https://github.com/morhetz/gruvbox
 " Last Modified: 12 Aug 2017
 " -----------------------------------------------------------------------------
-
+"
 " Supporting code -------------------------------------------------------------
 " Initialisation: {{{
 
@@ -94,6 +95,7 @@ let s:gb.dark2       = ['#0C3040', 239]     " 80-73-69
 let s:gb.dark3       = ['#04374D', 241]     " 102-92-84
 let s:gb.dark4       = ['#0B3F55', 243]     " 124-111-100
 let s:gb.dark4_256   = ['#11445A', 243]     " 124-111-100
+let s:gb.dark5       = ['#0b090a', 243]     " 124-111-100
 
 let s:gb.gray_245    = ['#928374', 245]     " 146-131-116
 let s:gb.gray_244    = ['#928374', 244]     " 146-131-116
@@ -181,6 +183,7 @@ if s:is_dark
   let s:bg2  = s:gb.dark2
   let s:bg3  = s:gb.dark3
   let s:bg4  = s:gb.dark4
+  let s:bg5  = s:gb.dark5
 
   let s:gray = s:gb.gray_245
 
@@ -251,6 +254,7 @@ let s:gb.bg1 = s:bg1
 let s:gb.bg2 = s:bg2
 let s:gb.bg3 = s:bg3
 let s:gb.bg4 = s:bg4
+let s:gb.bg5 = s:bg5
 
 let s:gb.gray = s:gray
 
@@ -312,7 +316,7 @@ if exists('g:gruvbox_number_column')
   let s:number_column = get(s:gb, g:gruvbox_number_column)
 endif
 
-let s:sign_column = s:bg1
+let s:sign_column = s:bg0
 
 if exists('g:gitgutter_override_sign_column_highlight') &&
       \ g:gitgutter_override_sign_column_highlight == 1
@@ -434,6 +438,7 @@ call s:HL('GruvboxBg1', s:bg1)
 call s:HL('GruvboxBg2', s:bg2)
 call s:HL('GruvboxBg3', s:bg3)
 call s:HL('GruvboxBg4', s:bg4)
+call s:HL('GruvboxBg5', s:bg5)
 
 call s:HL('GruvboxRed', s:red)
 call s:HL('GruvboxRedBold', s:red, s:none, s:bold)
@@ -547,12 +552,12 @@ hi! link WarningMsg GruvboxRedBold
 call s:HL('LineNr', s:bg4, s:number_column)
 
 " Column where signs are displayed
-call s:HL('SignColumn', s:none, s:sign_column)
+call s:HL('SignColumn', s:none, s:bg0)
 
 " Line used for closed folds
 call s:HL('Folded', s:gray, s:bg1, s:italic)
 " Column where folds are displayed
-call s:HL('FoldColumn', s:gray, s:bg1)
+call s:HL('FoldColumn', s:gray, s:bg0)
 
 " }}}
 " Cursor: {{{
